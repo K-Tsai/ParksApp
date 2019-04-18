@@ -29,7 +29,7 @@ function getParks(searchTerm, maxResults) {
     const params = {
         api_key: apiKey,
         stateCode: searchTerm,
-        limit: maxResults,
+        limit: maxResults - 1,
     };
     const queryString = formatQueryParams(params);
     const url = searchURL + '?' + queryString;
@@ -53,7 +53,8 @@ function getParks(searchTerm, maxResults) {
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
-        const searchTerm = $('#js-search-term').val().split(',');
+        const searchTerm = $('#js-search-term').val().split(', ');
+        console.log(searchTerm);
         const maxResults = $('#js-max-results').val();
         getParks(searchTerm, maxResults);
     });
